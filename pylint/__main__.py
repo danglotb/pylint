@@ -5,14 +5,13 @@
 import os
 import sys
 
+sys.path.append('/'.join(sys.argv[0].split('/')[:-2]))
 import pylint
 
-# Strip out the current working directory from sys.path.
-# Having the working directory in `sys.path` means that `pylint` might
-# inadvertently import user code from modules having the same name as
-# stdlib or pylint's own modules.
-# CPython issue: https://bugs.python.org/issue33053
-if sys.path[0] == "" or sys.path[0] == os.getcwd():
-    sys.path.pop(0)
 
-pylint.run_pylint()
+if __name__ == "__main__":
+
+    if sys.path[0] == "" or sys.path[0] == os.getcwd():
+        sys.path.pop(0)
+
+    pylint.run_pylint()
